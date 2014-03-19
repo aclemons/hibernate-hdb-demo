@@ -179,7 +179,7 @@
     <dependency>
       <groupId>com.sap.db.hdb</groupId>
       <artifactId>com.sap.db.jdbc</artifactId>
-      <version>1.00.61.380109</version>
+      <version>1.00.68.384084</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
