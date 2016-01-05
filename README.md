@@ -16,7 +16,6 @@ Or to test with the row store (the example uses auto-generated tables):
 You will need to manually install the HDB JDBC driver into your local maven  
 repository.
 
-It can be found here: [HANA Driver](https://hanadeveditionsapicl.hana.ondemand.com/hanadevedition/#hana-driver). Then choose the table 'HANA Driver'.  
+It can be found here: [HANA Driver](https://tools.hana.ondemand.com/). Then download the latest neo-java-web-sdk.  
 
-    $ unzip ngdbc_rev68.zip && mvn install:install-file -Dfile=ngdbc.jar -DgroupId=com.sap.db.hdb -DartifactId=com.sap.db.jdbc -Dversion=1.00.68.384084 -Dpackaging=jar && rm -f ngdbc.jar
-
+    $ unzip neo-java-web-sdk-2.40.10.2.zip repository/.archive/lib/ngdbc.jar && mvn install:install-file -Dfile=repository/.archive/lib/ngdbc.jar -DgroupId=com.sap.db.hdb -DartifactId=com.sap.db.jdbc -Dversion=1.96.0.24de221c9810b5c802f2c50962c535d8a9018577 -Dpackaging=jar && rm -f repository
