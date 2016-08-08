@@ -18,4 +18,4 @@ repository.
 
 It can be found here: [HANA Driver](https://tools.hana.ondemand.com/). Then download the latest neo-java-web-sdk.  
 
-    $ unzip neo-java-web-sdk-2.40.10.2.zip repository/.archive/lib/ngdbc.jar && mvn install:install-file -Dfile=repository/.archive/lib/ngdbc.jar -DgroupId=com.sap.db.hdb -DartifactId=com.sap.db.jdbc -Dversion=1.96.0.24de221c9810b5c802f2c50962c535d8a9018577 -Dpackaging=jar && rm -f repository
+    $ unzip neo-java-web-sdk-2.55.8.zip repository/.archive/lib/ngdbc.jar && mvn install:install-file -Dfile=repository/.archive/lib/ngdbc.jar -DgroupId=com.sap.db.hdb -DartifactId=com.sap.db.jdbc -Dversion=1.111.3.78bf6c853bb568fec93819498b2ec152c51cc958 -Dpackaging=jar && rm -r repository

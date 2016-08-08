@@ -152,7 +152,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.0.6.Final</version>
+      <version>5.0.10.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>xml-apis</artifactId>
@@ -168,7 +168,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>4.2.4.RELEASE</version>
+      <version>4.2.7.RELEASE</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -179,27 +179,27 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>4.2.4.RELEASE</version>
+      <version>4.2.7.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>com.sap.db.hdb</groupId>
       <artifactId>com.sap.db.jdbc</artifactId>
-      <version>1.96.0.24de221c9810b5c802f2c50962c535d8a9018577</version>
+      <version>1.111.3.78bf6c853bb568fec93819498b2ec152c51cc958</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.13</version>
+      <version>1.7.21</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-log4j12</artifactId>
-      <version>1.7.13</version>
+      <version>1.7.21</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.13</version>
+      <version>1.7.21</version>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
