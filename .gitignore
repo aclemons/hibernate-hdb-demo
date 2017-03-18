@@ -10,3 +10,6 @@
 .settings
 target
 bin
+
+TAGS
+**/workbench.xmi
