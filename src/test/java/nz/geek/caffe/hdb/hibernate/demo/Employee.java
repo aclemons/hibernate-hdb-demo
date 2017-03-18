@@ -35,15 +35,14 @@ public class Employee {
     @Id
     @GeneratedValue
     public int getId() {
-	return this.id;
+        return this.id;
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     public void setId(final int id) {
-	this.id = id;
+        this.id = id;
     }
 
     /**
@@ -51,15 +50,14 @@ public class Employee {
      */
     @Column(name = "name")
     public String getName() {
-	return this.name;
+        return this.name;
     }
 
     /**
-     * @param name
-     *            the name to set
+     * @param name the name to set
      */
     public void setName(final String name) {
-	this.name = name;
+        this.name = name;
     }
 
 }

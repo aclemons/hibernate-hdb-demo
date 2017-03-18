@@ -47,59 +47,54 @@ public class TestEmployee {
      */
     @Before
     public void setUp() {
-	final DataSource ds = new DriverManagerDataSource(System.getProperty(
-		"jdbc.url", "jdbc:sap://localhost:30115"), System.getProperty(
-		"jdbc.user", "hibernate"), System.getProperty("jdbc.password",
-		"hibernate"));
+        final DataSource ds = new DriverManagerDataSource(System.getProperty("jdbc.url", "jdbc:sap://localhost:30115"),
+                System.getProperty("jdbc.user", "hibernate"), System.getProperty("jdbc.password", "hibernate"));
 
-	final LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(
-		ds);
-	builder.setProperty(AvailableSettings.DIALECT, System.getProperty(
-		"hibernate.dialect", HANAColumnStoreDialect.class.getName()));
-	builder.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop");
-	builder.setProperty(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS,
-		"true");
+        final LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(ds);
+        builder.setProperty(AvailableSettings.DIALECT,
+                System.getProperty("hibernate.dialect", HANAColumnStoreDialect.class.getName()));
+        builder.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+        builder.setProperty(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, "true");
 
-	builder.addAnnotatedClass(Employee.class);
+        builder.addAnnotatedClass(Employee.class);
 
-	this.sessionFactory = builder.buildSessionFactory();
+        this.sessionFactory = builder.buildSessionFactory();
 
-	final HibernateTemplate ht = new HibernateTemplate();
-	ht.setSessionFactory(this.sessionFactory);
+        final HibernateTemplate ht = new HibernateTemplate();
+        ht.setSessionFactory(this.sessionFactory);
 
-	ht.afterPropertiesSet();
+        ht.afterPropertiesSet();
 
-	this.template = ht;
+        this.template = ht;
 
-	final HibernateTransactionManager txnMgr = new HibernateTransactionManager();
-	txnMgr.setDataSource(ds);
-	txnMgr.setSessionFactory(this.sessionFactory);
-	txnMgr.afterPropertiesSet();
+        final HibernateTransactionManager txnMgr = new HibernateTransactionManager();
+        txnMgr.setDataSource(ds);
+        txnMgr.setSessionFactory(this.sessionFactory);
+        txnMgr.afterPropertiesSet();
 
-	this.transactionTemplate = new TransactionTemplate(txnMgr);
+        this.transactionTemplate = new TransactionTemplate(txnMgr);
     }
 
     /**
      */
     @Test
     public void testHdb() {
-	final String name = "Timmi Tester";
+        final String name = "Timmi Tester";
 
-	final Integer id = this.transactionTemplate
-		.execute(new TransactionCallback<Integer>() {
+        final Integer id = this.transactionTemplate.execute(new TransactionCallback<Integer>() {
 
-		    public Integer doInTransaction(TransactionStatus status) {
-			final Employee e = new Employee();
-			e.setName(name);
+            public Integer doInTransaction(TransactionStatus status) {
+                final Employee e = new Employee();
+                e.setName(name);
 
-			TestEmployee.this.template.save(e);
+                TestEmployee.this.template.save(e);
 
-			return Integer.valueOf(e.getId());
-		    }
-		});
+                return Integer.valueOf(e.getId());
+            }
+        });
 
-	final Employee employee = this.template.get(Employee.class, id);
+        final Employee employee = this.template.get(Employee.class, id);
 
-	Assert.assertEquals(name, employee.getName());
+        Assert.assertEquals(name, employee.getName());
     }
 }
