@@ -15,18 +15,19 @@
  */
 package nz.geek.caffe.hdb.hibernate.demo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.dialect.HANAColumnStoreDialect;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.HibernateOperations;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
@@ -45,7 +46,7 @@ public class TestEmployee {
 
     /**
      */
-    @Before
+    @BeforeEach
     public void setUp() {
         final DataSource ds = new DriverManagerDataSource(System.getProperty("jdbc.url", "jdbc:sap://localhost:30115"),
                 System.getProperty("jdbc.user", "hibernate"), System.getProperty("jdbc.password", "hibernate"));
@@ -95,6 +96,6 @@ public class TestEmployee {
 
         final Employee employee = this.template.get(Employee.class, id);
 
-        Assert.assertEquals(name, employee.getName());
+        assertEquals(name, employee.getName());
     }
 }
