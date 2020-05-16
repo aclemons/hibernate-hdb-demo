@@ -215,9 +215,9 @@
       <version>4.3.18.RELEASE</version>
     </dependency>
     <dependency>
-      <groupId>com.sap.db.hdb</groupId>
-      <artifactId>com.sap.db.jdbc</artifactId>
-      <version>2.3.45.5a9ff585a5853e0cd59765ce72729abf7f2475b5</version>
+      <groupId>com.sap.cloud.db.jdbc</groupId>
+      <artifactId>ngdbc</artifactId>
+      <version>2.4.76</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
