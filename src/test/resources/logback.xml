@@ -14,16 +14,16 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 -->
-<Configuration>
-  <Appenders>
-    <Console name="STDOUT" target="SYSTEM_OUT">
-      <PatternLayout pattern="%d{ISO8601} [%t] %-5p %c %x - %m%n"/>
-    </Console>
-  </Appenders>
-  <Loggers>
-    <Logger name="org.hibernate.SQL" level="trace"/>
-    <Root level="warn">
-      <AppenderRef ref="STDOUT"/>
-    </Root>
-  </Loggers>
-</Configuration>
+<configuration debug="false" scan="false">
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{ISO8601} [%t] %-5p %c %x - %m%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="WARN">
+    <appender-ref ref="STDOUT" />
+  </root>
+
+  <logger name="org.hibernate.SQL" level="TRACE" />
+</configuration>
