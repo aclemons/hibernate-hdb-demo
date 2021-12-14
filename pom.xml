@@ -188,7 +188,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.4.15.Final</version>
+      <version>5.4.32.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>xml-apis</artifactId>
@@ -204,7 +204,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>5.2.18.RELEASE</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -215,12 +215,12 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>5.2.6.RELEASE</version>
+      <version>5.2.18.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>com.sap.cloud.db.jdbc</groupId>
       <artifactId>ngdbc</artifactId>
-      <version>2.4.76</version>
+      <version>2.11.14</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
