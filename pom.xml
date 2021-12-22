@@ -204,7 +204,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>5.2.18.RELEASE</version>
+      <version>5.2.19.RELEASE</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -215,7 +215,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>5.2.18.RELEASE</version>
+      <version>5.2.19.RELEASE</version>
     </dependency>
     <dependency>
       <groupId>com.sap.cloud.db.jdbc</groupId>
