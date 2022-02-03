@@ -188,7 +188,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-      <version>5.4.32.Final</version>
+      <version>5.6.5.Final</version>
       <exclusions>
         <exclusion>
           <artifactId>xml-apis</artifactId>
@@ -204,7 +204,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>5.2.19.RELEASE</version>
+      <version>5.3.15</version>
       <exclusions>
         <exclusion>
           <artifactId>commons-logging</artifactId>
@@ -215,7 +215,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>5.2.19.RELEASE</version>
+      <version>5.3.15</version>
     </dependency>
     <dependency>
       <groupId>com.sap.cloud.db.jdbc</groupId>
@@ -225,17 +225,17 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>1.7.32</version>
+      <version>1.7.35</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>jcl-over-slf4j</artifactId>
-      <version>1.7.32</version>
+      <version>1.7.35</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>1.2.9</version>
+      <version>1.2.10</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
