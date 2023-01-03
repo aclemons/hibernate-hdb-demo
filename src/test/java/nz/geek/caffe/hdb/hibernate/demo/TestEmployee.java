@@ -19,15 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import javax.sql.DataSource;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate5.HibernateOperations;
-import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
+import org.springframework.orm.hibernate5.SessionFactoryUtils;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionOperations;
@@ -37,9 +37,7 @@ import org.springframework.transaction.support.TransactionTemplate;
  */
 public class TestEmployee {
 
-    private SessionFactory sessionFactory;
-
-    HibernateOperations template;
+    SessionFactory sessionFactory;
 
     private TransactionOperations transactionTemplate;
 
@@ -52,19 +50,11 @@ public class TestEmployee {
 
         final LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(ds);
         builder.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop");
-        builder.setProperty(AvailableSettings.USE_NEW_ID_GENERATOR_MAPPINGS, "true");
         builder.setProperty("hibernate.dialect.hana.use_unicode_string_types", "true");
 
         builder.addAnnotatedClass(Employee.class);
 
         this.sessionFactory = builder.buildSessionFactory();
-
-        final HibernateTemplate ht = new HibernateTemplate();
-        ht.setSessionFactory(this.sessionFactory);
-
-        ht.afterPropertiesSet();
-
-        this.template = ht;
 
         final HibernateTransactionManager txnMgr = new HibernateTransactionManager();
         txnMgr.setDataSource(ds);
@@ -81,17 +71,24 @@ public class TestEmployee {
         final String name = "Timmi Tester";
 
         final Integer id = this.transactionTemplate.execute(new TransactionCallback<Integer>() {
-            public Integer doInTransaction(TransactionStatus status) {
+            @Override
+            public Integer doInTransaction(final TransactionStatus status) {
                 final Employee e = new Employee();
                 e.setName(name);
 
-                TestEmployee.this.template.save(e);
+                TestEmployee.this.sessionFactory.getCurrentSession().persist(e);
 
                 return Integer.valueOf(e.getId());
             }
         });
 
-        final Employee employee = this.template.get(Employee.class, id);
+        final Employee employee;
+        final Session session = TestEmployee.this.sessionFactory.openSession();
+        try {
+            employee = session.get(Employee.class, id);
+        } finally {
+            SessionFactoryUtils.closeSession(session);
+        }
 
         assertEquals(name, employee.getName());
     }
