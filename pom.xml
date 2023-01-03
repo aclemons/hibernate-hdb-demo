@@ -215,7 +215,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>5.3.22</version>
+      <version>6.0.3</version>
     </dependency>
     <dependency>
       <groupId>com.sap.cloud.db.jdbc</groupId>
