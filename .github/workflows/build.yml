@@ -1,0 +1,50 @@
+name: Build
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        jdk: ['8']
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Start Test Database
+      run: |
+        docker run --rm --name hana -d -p 39013:39013 -p 39017:39017 -p 39041-39045:39041-39045 -p 1128-1129:1128-1129 -p 59013-59014:59013-59014 saplabs/hanaexpress:2.00.061.00.20220519.1 --agree-to-sap-license --dont-check-system --dont-check-mount-points --master-password HXEHana1
+
+    - name: Set up JDK ${{ matrix.jdk }}
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: ${{ matrix.jdk }}
+        java-package: jdk
+        cache: 'maven'
+
+    - name: Wait for database to initialise
+      run: |
+        echo "Waiting for HANA to start..."
+        timeout 600 bash -c "until docker logs hana 2>&1 | grep 'Ready at: ' > /dev/null 2>&1 ; do sleep 1 ; done"
+        echo "HANA is ready..."
+
+    - name: Build
+      run: |
+        mvn clean site install -B -Djdbc.url=jdbc:sap://localhost:39041 -Djdbc.user=SYSTEM -Djdbc.password=HXEHana1
+
+    - name: Stop test resources
+      if: always()
+      run: |
+        docker logs hana || true
+        docker stop hana > /dev/null 2>&1 || true

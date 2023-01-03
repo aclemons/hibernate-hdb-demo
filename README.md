@@ -12,3 +12,8 @@ dialect and you are ready to start development.
 Or to test with the row store (the example uses auto-generated tables):
 
     $ mvn clean install -Djdbc.url=jdbc:sap://localhost:30215 -Djdbc.user=hibernate -Djdbc.password=hibernate -Dhibernate.dialect=org.hibernate.dialect.HANARowStoreDialect
+
+
+The simplest way to get started with local development is to use the SAP HANA docker image:
+
+https://hub.docker.com/r/saplabs/hanaexpress
