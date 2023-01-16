@@ -27,6 +27,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <spring.version>6.0.4</spring.version>
   </properties>
   <build>
     <plugins>
@@ -167,12 +168,12 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
-      <version>6.0.4</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-jdbc</artifactId>
-      <version>6.0.3</version>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
       <groupId>com.sap.cloud.db.jdbc</groupId>
