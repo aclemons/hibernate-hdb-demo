@@ -27,7 +27,7 @@ jobs:
           docker run --rm --name hana -d -p 39013:39013 -p 39017:39017 -p 39041-39045:39041-39045 -p 1128-1129:1128-1129 -p 59013-59014:59013-59014 saplabs/hanaexpress:2.00.061.00.20220519.1 --agree-to-sap-license --dont-check-system --dont-check-mount-points --master-password HXEHana1
 
       - name: Set up JDK ${{ matrix.jdk }}
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: ${{ matrix.jdk }}
