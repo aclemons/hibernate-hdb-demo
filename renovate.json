@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":maintainLockFilesMonthly",
+    ":separateMajorReleases",
+    ":separateMultipleMajorReleases",
+    ":separatePatchReleases",
+    "regexManagers:dockerfileVersions",
+    "regexManagers:githubActionsVersions",
+    "schedule:earlyMondays"
+  ],
+  "ignoreTests": false,
+  "pre-commit": {
+    "enabled": true
+  },
+  "rangeStrategy": "pin",
+  "timezone": "Asia/Tokyo"
+}
