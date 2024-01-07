@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.AvailableSettings;
+import org.hibernate.cfg.SchemaToolingSettings;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -49,7 +49,7 @@ public class TestEmployee {
                 System.getProperty("jdbc.user", "hibernate"), System.getProperty("jdbc.password", "hibernate"));
 
         final LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(ds);
-        builder.setProperty(AvailableSettings.HBM2DDL_AUTO, "create-drop");
+        builder.setProperty(SchemaToolingSettings.HBM2DDL_AUTO, "create-drop");
         builder.setProperty("hibernate.dialect.hana.use_unicode_string_types", "true");
 
         builder.addAnnotatedClass(Employee.class);
