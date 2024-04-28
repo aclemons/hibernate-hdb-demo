@@ -5,9 +5,6 @@ name: Build
     branches: [master]
   pull_request:
     branches: [master]
-env:
-  # renovate: datasource=docker depName=saplabs/hanaexpress versioning=docker
-  HANA_DOCKER_IMAGE: saplabs/hanaexpress:2.00.072.00.20231123.1@sha256:48c804572334b42b1d91a0fd54c4d6320cd37141f632724c3ebb7e307f5d4bb9
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,7 +24,7 @@ jobs:
 
       - name: Start Test Database
         run: |
-          docker run --rm --name hana -d -p 39013:39013 -p 39017:39017 -p 39041-39045:39041-39045 -p 1128-1129:1128-1129 -p 59013-59014:59013-59014 ${{ env.HANA_DOCKER_IMAGE }} --agree-to-sap-license --dont-check-system --dont-check-mount-points --master-password HXEHana1
+          docker compose up -d --wait --quiet-pull
 
       - name: Set up JDK ${{ matrix.jdk }}
         uses: actions/setup-java@99b8673ff64fbf99d8d325f52d9a5bdedb8483e9 # v4.2.1
@@ -40,7 +37,7 @@ jobs:
       - name: Wait for database to initialise
         run: |
           echo "Waiting for HANA to start..."
-          timeout 600 bash -c "until docker logs hana 2>&1 | grep 'Ready at: ' > /dev/null 2>&1 ; do sleep 1 ; done"
+          timeout 600 bash -c "until docker logs hibernate-hdb-demo-hana-1 2>&1 | grep 'Ready at: ' > /dev/null 2>&1 ; do sleep 1 ; done"
           echo "HANA is ready..."
 
       - name: Build
@@ -50,4 +47,4 @@ jobs:
       - name: Stop test resources
         if: always()
         run: |
-          docker stop hana > /dev/null 2>&1 || true
+          docker compose down > /dev/null 2>&1 || true

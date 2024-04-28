@@ -1,0 +1,11 @@
+---
+services:
+  hana:
+    image: saplabs/hanaexpress:2.00.072.00.20231123.1@sha256:48c804572334b42b1d91a0fd54c4d6320cd37141f632724c3ebb7e307f5d4bb9
+    command: --agree-to-sap-license --dont-check-system --dont-check-mount-points --master-password HXEHana1
+    ports:
+      - 39013:39013
+      - 39017:39017
+      - 39041-39045:39041-39045
+      - 1128-1129:1128-1129
+      - 59013-59014:59013-59014
