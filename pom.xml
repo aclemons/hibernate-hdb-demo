@@ -27,7 +27,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <spring.version>6.2.18</spring.version>
+    <spring.version>7.0.8</spring.version>
     <slf4j.version>2.0.18</slf4j.version>
     <junit.version>6.0.3</junit.version>
   </properties>
